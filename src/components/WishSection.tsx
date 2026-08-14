@@ -76,20 +76,20 @@ export default function WishSection() {
 
   return (
     <section
-      className={`relative flex flex-col bg-[linear-gradient(180deg,rgba(251,246,239,0.35)_0%,rgba(243,232,216,0.45)_50%,rgba(232,208,196,0.55)_100%)] ${
+      className={`relative z-[2] flex flex-col bg-[linear-gradient(180deg,rgba(251,246,239,0.35)_0%,rgba(243,232,216,0.45)_50%,rgba(232,208,196,0.55)_100%)] ${
         open ? "min-h-dvh" : "h-dvh"
       }`}
     >
       {/* Full-screen stage: title + cake centered; footer pinned to bottom */}
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-5 pb-24 pt-10 md:px-10">
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-24 pt-8 md:px-10 md:pt-10">
         <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-          <p className="mb-2 text-[0.7rem] uppercase tracking-[0.24em] text-ink-soft">
+          <p className="display-kicker mb-2 text-ink-soft">
             make a wish
           </p>
-          <h2 className="font-serif text-3xl leading-tight text-burgundy md:text-5xl">
+          <h2 className="display-title font-serif text-burgundy">
             Happy Birthday, {site.nickname}
           </h2>
-          <p className="mt-3 max-w-md text-ink-soft">
+          <p className="display-sub mt-3 max-w-md text-ink-soft">
             Blow the candle — a letter opens for you.
           </p>
 
@@ -118,9 +118,6 @@ export default function WishSection() {
                 )}
               </AnimatePresence>
               <span className="h-10 w-2 rounded-sm bg-gradient-to-b from-cream to-vanilla ring-1 ring-gold/30" />
-              <span className="mt-2 text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft opacity-70 group-disabled:opacity-0">
-                tap to blow
-              </span>
             </button>
 
             <div className="relative mt-1 w-[200px] md:w-[240px]" aria-hidden>
@@ -140,6 +137,17 @@ export default function WishSection() {
               </div>
               <div className="mx-auto -mt-1 h-3 w-[92%] rounded-b-xl bg-burgundy/80" />
             </div>
+
+            {lit && (
+              <button
+                type="button"
+                onClick={blowCandle}
+                className="cta-btn relative mt-6 rounded-full bg-burgundy text-[0.95rem] font-medium tracking-wide text-cream shadow-[0_10px_28px_rgba(92,31,43,0.28)] ring-1 ring-gold/50 transition hover:bg-wine md:mt-7"
+              >
+                <span className="cta-pulse-soft absolute inset-0 rounded-full" />
+                Tap to blow
+              </button>
+            )}
           </div>
 
           {musicReady && (
@@ -160,7 +168,7 @@ export default function WishSection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-12 w-full max-w-xl rounded-sm bg-cream/95 p-6 text-left shadow-[0_30px_80px_-40px_rgba(92,31,43,0.55)] ring-1 ring-burgundy/10 md:mt-14 md:p-10"
+                className="mt-8 w-full max-w-xl rounded-sm bg-cream/95 p-5 text-left shadow-[0_30px_80px_-40px_rgba(92,31,43,0.55)] ring-1 ring-burgundy/10 md:mt-14 md:p-10"
               >
                 <p className="font-serif text-2xl text-burgundy md:text-3xl">
                   {letter.greeting}
@@ -183,11 +191,12 @@ export default function WishSection() {
       </div>
 
       <footer
-        className={`z-10 bg-burgundy px-6 py-5 text-center text-cream/90 ${
+        className={`z-10 bg-burgundy px-6 py-4 text-center text-cream/90 md:py-5 ${
           open
             ? "relative mt-8 shrink-0"
             : "pointer-events-none absolute inset-x-0 bottom-0 backdrop-blur-sm"
         }`}
+        style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
       >
         <p className="font-serif text-lg text-cream md:text-xl">
           Forever soft for you, {site.nicknameAlt}

@@ -34,7 +34,7 @@ function ThoughtLine({
 
   return (
     <motion.p
-      className="font-serif text-[0.95rem] leading-snug text-ink sm:text-lg md:text-2xl"
+      className="font-serif thought-line text-[0.9rem] leading-snug text-ink sm:text-lg md:text-xl lg:text-2xl"
       style={
         reduce
           ? { opacity: 1, y: 0 }
@@ -65,7 +65,7 @@ export default function ThoughtStory() {
   );
 
   return (
-    <section ref={ref} className="relative h-[320vh] bg-transparent">
+    <section ref={ref} className="relative z-[2] h-[320vh] bg-transparent">
       <div className="sticky top-0 flex h-dvh items-center overflow-hidden">
         <div className="thought-layout">
           {/* Back view: you looking at a large wall portrait */}
@@ -77,7 +77,7 @@ export default function ThoughtStory() {
               src="/thought-guy-v9.jpg"
               alt="Looking at your portrait on the wall"
               fill
-              sizes="(max-width: 768px) 90vw, 560px"
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 560px"
               className="object-cover object-center"
               priority
             />
@@ -129,11 +129,11 @@ export default function ThoughtStory() {
             <p className="mb-2 text-[0.65rem] uppercase tracking-[0.24em] text-ink-soft md:mb-3 md:text-[0.7rem]">
               looking at you
             </p>
-            <h2 className="mb-4 font-serif text-2xl leading-tight text-burgundy sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl">
+            <h2 className="display-title mb-3 font-serif text-burgundy md:mb-6">
               In my thoughts, {site.nickname}
             </h2>
 
-            <div className="relative space-y-3 sm:space-y-4 md:space-y-5">
+            <div className="relative space-y-1.5 sm:space-y-3 md:space-y-5">
               {thoughts.map((line, i) => (
                 <ThoughtLine
                   key={line}

@@ -9,11 +9,20 @@ export const thoughts = [
   "Pehli soft smile… ab bhi yaad hai.",
   "Ap ki baatein meri favorite quiet place hain.",
   "Friendship se shuru hua — pyaar ban gaya.",
-  "Main tumhe respect se pyar karta hoon, Babuu.",
+  "Main Ap ko respect se pyar karta hoon, Babuu.",
   "Ap ki care me main thoda sa soft ho jata hoon.",
-  "Cutiee Piee — kyunki tum ho hi itni sweet.",
+  "Cutiee Piee — kyunki Ap ho hi itni sweet.",
   "Har chhoti yaad ek warm light jaisi hai.",
   "Aaj sirf itna: thank you for existing.",
+];
+
+export const usShots = [
+  { src: "/us-1-v2.jpg", alt: "Ek doosre ko dekhte hue" },
+  { src: "/us-2-v2.jpg", alt: "Saath, camera ki taraf" },
+  { src: "/us-3-v2.jpg", alt: "Sar kandhe pe" },
+  { src: "/us-4-v2.jpg", alt: "Woh camera, woh Ap ko dekhte hue" },
+  { src: "/us-5-v2.jpg", alt: "Haath mein haath, chalte hue" },
+  { src: "/us-6-v2.jpg", alt: "Peeche se, palat ke" },
 ];
 
 export const memories = [
@@ -40,6 +49,31 @@ export const memories = [
     title: "Soft light",
     caption: "Yeh sukoon wali smile — dil ko halka kar deti hai",
     date: "Always glowing",
+  },
+];
+
+export const lanterns = [
+  "Ap ki smile meri favorite notification hai.",
+  "Friendship se shuru hua — pyaar ban gaya.",
+  "Ap ke paas main thoda sa soft ho jata hoon.",
+  "Woh quiet care… dil ko ghar milta hai.",
+  "Cutiee Piee — kyunki Ap ho hi itni sweet.",
+  "Main Ap ko respect se pyar karta hoon.",
+  "Har chhoti yaad ek warm light jaisi hai.",
+  "Aaj sirf itna: thank you for existing.",
+];
+
+export const pings = [
+  { from: "Manuu", time: "now", text: "Cutiee Piee…" },
+  {
+    from: "Manuu",
+    time: "now",
+    text: "Ap ki smile meri favorite notification hai.",
+  },
+  {
+    from: "Manuu",
+    time: "now",
+    text: "Bas yeh soch ke poora din halka ho jata hai.",
   },
 ];
 

@@ -35,7 +35,7 @@ function Polaroid({
 
   return (
     <motion.article
-      className="relative w-[78vw] max-w-[320px] shrink-0 snap-center md:w-[340px]"
+      className="relative w-[min(78vw,280px)] shrink-0 snap-center sm:w-[min(70vw,320px)] md:w-[340px] lg:w-[380px]"
       style={
         reduce
           ? undefined
@@ -64,7 +64,7 @@ function Polaroid({
             src={src}
             alt={title}
             fill
-            sizes="340px"
+            sizes="(max-width: 640px) 78vw, 380px"
             className="object-cover"
           />
         </div>
@@ -91,28 +91,29 @@ export default function MemoryGallery() {
   const x = useTransform(scrollYProgress, [0, 1], ["8%", "-72%"]);
 
   return (
-    <section ref={ref} className="relative h-[300vh] bg-transparent">
+    <section ref={ref} className="relative z-[2] h-[300vh] bg-transparent">
       <div className="sticky top-0 flex h-dvh flex-col justify-center overflow-hidden">
-        <div className="mb-8 px-6 text-center md:mb-12 md:px-10">
-          <p className="mb-2 text-[0.7rem] uppercase tracking-[0.24em] text-ink-soft">
+        <div className="mb-6 px-4 text-center md:mb-12 md:px-10">
+          <p className="display-kicker mb-2 text-ink-soft">
             memory lane
           </p>
-          <h2 className="font-serif text-3xl text-burgundy md:text-5xl">
+          <h2 className="display-title font-serif text-burgundy">
             Soft frames of us
           </h2>
         </div>
 
         <motion.div
           style={reduce ? undefined : { x }}
-          className="flex w-max gap-6 px-6 md:gap-10 md:px-16"
+          className="flex w-max gap-5 px-4 md:gap-10 md:px-16"
         >
           {memories.map((m, i) => (
             <Polaroid key={m.title} {...m} index={i} />
           ))}
         </motion.div>
 
-        <p className="mt-10 text-center text-sm text-ink-soft">
-          Scroll to glide · hover to tilt
+        <p className="mt-8 px-4 text-center text-sm text-ink-soft md:mt-10">
+          Scroll to glide
+          <span className="memory-hover-hint"> · hover to tilt</span>
         </p>
       </div>
     </section>

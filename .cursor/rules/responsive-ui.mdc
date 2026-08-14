@@ -1,0 +1,16 @@
+---
+description: Keep the birthday site usable on every screen size
+alwaysApply: true
+---
+
+# Responsive UI
+
+Every section must work on phone (~360px), tablet (~768–1024), laptop (~1280), and large desktop (~1440+).
+
+- Use `clamp()` for headings, not fixed `text-5xl` on small phones.
+- Sticky `h-dvh` stages: content must fit without clipping. On short screens (`max-height: 740px`) shrink gaps, images, and lockets — never rely on `overflow-hidden` to hide copy.
+- Pad with `env(safe-area-inset-*)` for notched phones.
+- Stack layouts below `64rem`; side-by-side only on laptop+.
+- Do not let decorative hearts, lanterns, or 3D canvas cover headings or CTAs.
+- Test mentally at 360×740, 768×1024, 1280×800, and 1440×900 before finishing UI work.
+- `overflow-x: hidden` on `body`; no element should force horizontal scroll.

@@ -2,6 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
+import confetti from "canvas-confetti";
 import {
   motion,
   useMotionValueEvent,
@@ -12,6 +13,56 @@ import {
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { site } from "@/lib/content";
+
+const FIREWORK_COLORS = [
+  "#c98b7b",
+  "#c9a46a",
+  "#5c1f2b",
+  "#fbf6ef",
+  "#e8b4a8",
+  "#fff1d6",
+  "#7a2e3c",
+  "#f0a35a",
+];
+
+function fireAssembleFinale() {
+  const burst = (origin: { x: number; y: number }, count: number, extra?: confetti.Options) => {
+    confetti({
+      particleCount: count,
+      spread: 360,
+      startVelocity: 52,
+      gravity: 0.78,
+      ticks: 320,
+      origin,
+      colors: FIREWORK_COLORS,
+      scalar: 1.2,
+      zIndex: 90,
+      disableForReducedMotion: true,
+      ...extra,
+    });
+  };
+
+  burst({ x: 0.5, y: 0.42 }, 180);
+  burst({ x: 0.12, y: 0.22 }, 110);
+  burst({ x: 0.88, y: 0.22 }, 110);
+  burst({ x: 0.18, y: 0.68 }, 100);
+  burst({ x: 0.82, y: 0.68 }, 100);
+  burst({ x: 0.5, y: 0.12 }, 90, { startVelocity: 38 });
+
+  const end = Date.now() + 2400;
+  const interval = window.setInterval(() => {
+    if (Date.now() > end) {
+      window.clearInterval(interval);
+      return;
+    }
+    burst(
+      { x: 0.08 + Math.random() * 0.84, y: 0.08 + Math.random() * 0.5 },
+      75 + Math.floor(Math.random() * 40)
+    );
+  }, 220);
+
+  return interval;
+}
 
 const COLS = 5;
 const ROWS = 6;
@@ -149,6 +200,8 @@ function CanvasFallback() {
 export default function HeroPuzzle() {
   const containerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
+  const celebratedRef = useRef(false);
+  const fireworkRef = useRef<number | null>(null);
   const [mounted, setMounted] = useState(false);
   const reduceMotion = !!useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -161,31 +214,47 @@ export default function HeroPuzzle() {
 
   useEffect(() => setMounted(true), []);
 
+  useEffect(() => {
+    return () => {
+      if (fireworkRef.current) window.clearInterval(fireworkRef.current);
+    };
+  }, []);
+
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     progressRef.current = v;
+    if (reduceMotion) return;
+
+    if (v >= 0.9 && !celebratedRef.current) {
+      celebratedRef.current = true;
+      fireworkRef.current = fireAssembleFinale();
+    }
+
+    if (v < 0.72) {
+      celebratedRef.current = false;
+    }
   });
 
   return (
-    <section ref={containerRef} className="relative h-[280vh] bg-transparent">
-      <div className="sticky top-0 flex h-dvh w-full flex-col items-center justify-center overflow-hidden">
+    <section ref={containerRef} id="hero-puzzle" className="relative h-[280vh] bg-transparent">
+      <div className="sticky top-0 flex h-dvh w-full flex-col items-center overflow-hidden section-stage">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,#e8b4a833,transparent_55%),radial-gradient(ellipse_at_80%_90%,#c9a46a22,transparent_50%)]" />
 
         <motion.div
           style={{ opacity: titleOpacity }}
-          className="pointer-events-none absolute inset-x-0 top-[10%] z-10 px-6 text-center md:top-[8%]"
+          className="relative z-20 w-full shrink-0 px-2 text-center"
         >
-          <p className="mb-2 text-[0.7rem] uppercase tracking-[0.28em] text-ink-soft">
+          <p className="display-kicker mb-2 text-ink-soft">
             pieces of you
           </p>
-          <h1 className="font-serif text-4xl font-medium text-burgundy md:text-6xl">
+          <h1 className="display-title font-serif font-medium text-burgundy">
             {site.nickname}
           </h1>
-          <p className="mt-2 font-serif text-lg text-ink-soft italic md:text-xl">
+          <p className="display-sub mt-2 font-serif italic text-ink-soft">
             Scroll — watch the pieces find home
           </p>
         </motion.div>
 
-        <div className="relative z-[1] h-[min(68vh,600px)] w-full max-w-3xl px-4">
+        <div className="relative z-[1] mt-2 min-h-0 w-full max-w-3xl flex-1 overflow-hidden lg:max-w-4xl xl:max-w-5xl">
           {mounted ? (
             <Canvas
               dpr={[1, 1.5]}
@@ -212,7 +281,7 @@ export default function HeroPuzzle() {
 
         <motion.p
           style={{ opacity: hintOpacity }}
-          className="absolute bottom-8 z-10 text-center text-sm text-ink-soft"
+          className="relative z-20 mt-2 shrink-0 text-center text-sm text-ink-soft"
         >
           {site.name} · my favorite frame
         </motion.p>
