@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F7D6E0" />
+  <meta name="description" content="Happy Birthday, Babuu — a little love letter for Zamar Zahra." />
+  <title>Happy Birthday, Babuu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+  <!-- 1. Open -->
+  <div id="gate" class="gate" role="dialog" aria-label="Open birthday letter">
+    <button type="button" class="gate__btn" id="openGate">
+      <span class="gate__eyebrow">For you</span>
+      <span class="gate__title">Babuu</span>
+      <span class="gate__hint">tap or click to open</span>
+    </button>
+  </div>
+
+  <main id="story" class="story is-locked" hidden>
+    <!-- 2. Hero -->
+    <section class="panel hero" data-scene="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content" data-hero-content>
+        <p class="eyebrow">for my favorite person</p>
+        <h1 class="hero__name">Babuu</h1>
+        <p class="hero__sub">Zamar Zahra</p>
+        <p class="hero__line">Happy Birthday, meri jaan.</p>
+        <p class="hero__support">A soft little scroll — sirf tumhare liye.</p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span>scroll</span>
+        <span class="scroll-hint__dot"></span>
+      </div>
+    </section>
+
+    <!-- 3. Letter — scroll-scrub scene (video-like) -->
+    <section class="scene scene--letter" data-scene="letter" aria-label="A little letter">
+      <div class="scene__pin">
+        <div class="panel__inner panel__inner--text">
+          <p class="eyebrow">a little letter</p>
+          <div class="letter__lines" id="letterLines">
+            <p data-scrub="0">Babuu… aaj tumhari birthday hai,</p>
+            <p data-scrub="1">aur mera dil bas itna kehta hai —</p>
+            <p data-scrub="2">thank you for existing in my world.</p>
+            <p data-scrub="3">Friendship se shuru hua,</p>
+            <p data-scrub="4">ab ye pyaar ban gaya hai.</p>
+            <p data-scrub="5">Main tumhe bohot respect karta hoon…</p>
+            <p data-scrub="6">aur tumhe bohot pyar bhi karta hoon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Nicknames — scroll-scrub -->
+    <section class="scene scene--nicks" data-scene="nicks" aria-label="Nicknames">
+      <div class="scene__pin nicknames">
+        <p class="eyebrow">the names I save for you</p>
+        <div class="nick__stack">
+          <p class="nick nick--big" data-nick-scrub="0">Babuu</p>
+          <p class="nick__note" data-nick-scrub="1">jo tumhe pasand hai… aur mujhe bhi</p>
+          <p class="nick nick--soft" data-nick-scrub="2">Cutiee Piee</p>
+          <p class="nick__note" data-nick-scrub="3">kyunki tum ho hi itni soft &amp; sweet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Moments -->
+    <section class="panel moments">
+      <div class="panel__inner">
+        <p class="eyebrow" data-reveal>our little moments</p>
+        <h2 class="section-title" data-reveal>Thodi si yaadein</h2>
+        <div class="moments__grid">
+          <figure class="moment" data-reveal data-parallax>
+            <div class="moment__frame">
+              <img src="assets/moment-1.jpg" width="900" height="1200" alt="Placeholder moment 1 — replace with your photo" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Jab pehli baar friendship me soft si smile lagi thi</figcaption>
+          </figure>
+          <figure class="moment" data-reveal data-parallax>
+            <div class="moment__frame">
+              <img src="assets/moment-2.jpg" width="900" height="1200" alt="Placeholder moment 2 — replace with your photo" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Woh din jab bas baatein… aur dil halka sa light ho gaya</figcaption>
+          </figure>
+          <figure class="moment" data-reveal data-parallax>
+            <div class="moment__frame">
+              <img src="assets/moment-3.jpg" width="900" height="1200" alt="Placeholder moment 3 — replace with your photo" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Tumhari care… jo chhoti chhoti cheezon me nazar aati hai</figcaption>
+          </figure>
+          <figure class="moment" data-reveal data-parallax>
+            <div class="moment__frame">
+              <img src="assets/moment-4.jpg" width="900" height="1200" alt="Placeholder moment 4 — replace with your photo" loading="lazy" decoding="async" />
+            </div>
+            <figcaption>Aur yeh pyaar — quiet, soft, sirf hamara</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Why you -->
+    <section class="panel why">
+      <div class="panel__inner panel__inner--text">
+        <p class="eyebrow" data-reveal>why you matter</p>
+        <h2 class="section-title" data-reveal>Tum meri duniya me kyun special ho</h2>
+        <ul class="why__list">
+          <li data-reveal>Tumhari baatein sunke din soft ho jata hai.</li>
+          <li data-reveal>Tum mujhe samajhti ho — quietly, gently.</li>
+          <li data-reveal>Friendship se love… aur har step pe respect.</li>
+          <li data-reveal>Tumhari smile meri favorite notification hai.</li>
+          <li data-reveal>Bas itna: main tumse pyar karta hoon, Babuu.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Cute energy -->
+    <section class="panel cute" data-reveal>
+      <div class="panel__inner panel__inner--text">
+        <p class="eyebrow">soft confession</p>
+        <h2 class="section-title">Thoda sa cute wala pyaar</h2>
+        <p class="cute__text">
+          Tumhare paas main thoda sa chhota, thoda sa soft feel karta hoon —
+          jaise tumhari care me hide ho jaun.
+        </p>
+        <p class="cute__text">
+          Maybe isliye tumhara “bacho wala” pyaar mujhe itna pasand hai…
+          kyunki tumhare liye main sirf cute hoon — tumhara Cutiee Piee ka favorite boy.
+        </p>
+        <p class="cute__text cute__text--em">
+          Aur main chahta hoon yeh soft sa pyaar hamesha aise hi rahe.
+        </p>
+      </div>
+    </section>
+
+    <!-- 8. Finale -->
+    <section class="panel finale" id="finale" data-reveal>
+      <div class="hearts" id="hearts" aria-hidden="true"></div>
+      <p class="eyebrow">today &amp; always</p>
+      <h2 class="finale__wish">Happy Birthday,<br />Zamar Zahra</h2>
+      <p class="finale__nick">My Babuu · My Cutiee Piee</p>
+      <p class="finale__love">I love you.</p>
+      <p class="finale__close">May this year hold you gently — soft days, warm smiles, and a heart that always knows you’re loved.</p>
+      <p class="finale__urdu">Janamdin mubarak, meri jaan. Hamesha khush raho.</p>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
